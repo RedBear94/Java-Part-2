@@ -13,13 +13,13 @@ public class Main {
 		Wall wall2 = new Wall(8);
 
 		/*
-		catB.Jump(wall.getHeight());
-		catB.Run(treadmill.getDistance());
+		catB.jump(wall.getHeight());
+		catB.run(treadmill.getDistance());
 		System.out.println("");*/
 
 		// № 3 - 4
 		Participants[] massParticipants = {catB, humanA, robotR};
-		Object[] massObstacles = {treadmill, wall, wall2};
+		Obstacles[] massObstacles = {treadmill, wall, wall2};
 
 		Course c = new Course(massObstacles); // Создаем полосу препятствий
 		Team team = new Team("team1",massParticipants); // Создаем команду

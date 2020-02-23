@@ -1,6 +1,6 @@
 package com.company;
 
-public class Wall {
+public class Wall implements Obstacles {
     private int height;
     public Wall (int height){
         this.height = height;
@@ -8,5 +8,9 @@ public class Wall {
 
     public int getHeight() {
         return height;
+    }
+
+    public void passObstacle(Participants p) {
+        p.jump(height);
     }
 }

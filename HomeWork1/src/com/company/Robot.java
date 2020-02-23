@@ -14,7 +14,7 @@ public class Robot implements Participants {
     }
 
     // бегать
-    public void Run(int distance){
+    public void run(int distance){
         if(distance <= maxRun) {
             System.out.println("Робот " + name + " успешно пробежал " + distance + " м");
             obstaclePassed = true;
@@ -25,7 +25,7 @@ public class Robot implements Participants {
     }
 
     // прыгать
-    public void Jump(int height){
+    public void jump(int height){
         if(height <= maxJump) {
             System.out.println("Робот " + name + " успешно прыгнул на " + height + " м");
             obstaclePassed = true;

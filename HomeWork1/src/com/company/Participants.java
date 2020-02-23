@@ -2,9 +2,9 @@ package com.company;
 
 public interface Participants {
 
-    void Run(int distance);
+    void run(int distance);
 
-    void Jump(int height);
+    void jump(int height);
 
     void showInfo();
 

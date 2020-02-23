@@ -1,9 +1,9 @@
 package com.company;
 
 public class Course {
-    private Object[] massObstacles;
+    private Obstacles[] massObstacles;
 
-    public Course(Object[] massObstacles){
+    public Course(Obstacles[] massObstacles){
         this.massObstacles = massObstacles;
     }
 
@@ -13,12 +13,8 @@ public class Course {
 
         for (int i = 0; i < massParticipants.length; i++) {
             for (int j = 0; j < massObstacles.length; j++) {
-                if (massObstacles[j] instanceof Treadmill) {
-                    massParticipants[i].Run(((Treadmill)massObstacles[j]).getDistance());
-                } else if (massObstacles[j] instanceof Wall) {
-                    massParticipants[i].Jump(((Wall)massObstacles[j]).getHeight());
-                }
-                if (!massParticipants[i].getObstaclePassed()) {
+                massObstacles[j].passObstacle(massParticipants[i]);
+                if(!massParticipants[i].getObstaclePassed()){
                     break;
                 }
             }

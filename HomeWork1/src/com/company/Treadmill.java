@@ -1,6 +1,6 @@
 package com.company;
 
-public class Treadmill {
+public class Treadmill implements Obstacles{
     private int distance;
     public Treadmill (int distance){
         this.distance = distance;
@@ -8,5 +8,9 @@ public class Treadmill {
 
     public int getDistance() {
         return distance;
+    }
+
+    public void passObstacle(Participants p) {
+        p.run(distance);
     }
 }
