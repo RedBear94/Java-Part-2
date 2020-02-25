@@ -12,6 +12,7 @@ public class Main {
             }
         }
         // myArray[3][0] = "A"; // NumberFormatException
+        // myArray = new String[5][3]; // MyArraySizeException
 
         try{
             getArray4on4(myArray);
@@ -25,13 +26,17 @@ public class Main {
 
     public static void getArray4on4(String [][] arrayFourOnFour) throws MyArraySizeException {
        int result = 0;
-       int[][] numbers = new int[4][4];
-       if (arrayFourOnFour[0].length != 4 || arrayFourOnFour.length != 4)
+       if (arrayFourOnFour.length != 4)
            throw new MyArraySizeException("Размер массива должен быть 4 на 4", 1);
+       else {
+           for (int i = 0; i < arrayFourOnFour.length; i++){
+               if(arrayFourOnFour[0].length != 4)
+                   throw new MyArraySizeException("Размер массива должен быть 4 на 4", 1);
+           }
+        }
        for(int i = 0; i < 4; i++){
            for(int j = 0; j < 4; j++){
                try {
-                   numbers[i][j] = Integer.parseInt(arrayFourOnFour[i][j]);
                    result += Integer.parseInt(arrayFourOnFour[i][j]);
                } catch (NumberFormatException ex){
                    throw new MyArrayDataException(i, j);
