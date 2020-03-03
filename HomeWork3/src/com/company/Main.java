@@ -2,6 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class Main {
 
@@ -21,35 +22,24 @@ public class Main {
 
         // Число продуктов
         HashMap<String, Integer> countProducts = new HashMap<>();
-        int count = 0;
 
-        // Список уникальных слов
-        ArrayList<String> result = new ArrayList<>();
-        boolean unique = true;
-        String str1;
-        String str2;
-
-        for (int i = 0; i < productsList.size(); i++){
-            str1 = productsList.get(i);
-            for(int j = 0; j < productsList.size(); j++){
-                str2 = productsList.get(j);
-                if(str1 == str2 && i != j){
-                    unique = false;
-                }
-                if(str1 == str2){
-                    count++;
-                    countProducts.put(str1, count);
-                }
-            }
-            count = 0;
-            if(unique){
-                result.add(str1);
-            } else {
-                unique = true;
-            }
+        for (String word : productsList) {
+            countProducts.merge(word, 1, (oldValue, newValue) -> oldValue + newValue);
         }
-        System.out.println(result);
-        System.out.println(countProducts);
+
+        // Вывод числа продуктов
+        // (Key, Value)
+        countProducts.forEach((word, count) -> {
+            System.out.print(word + ": " + count + " ");
+        });
+        System.out.println();
+        // Вывод списка уникальных слов
+        countProducts.forEach((word, count) -> {
+            if(count == 1) {
+                System.out.print(word +  " ");
+            }
+        });
+        System.out.println();
 
         // № 2
         Phonebook phoneBook = new Phonebook();
@@ -59,7 +49,11 @@ public class Main {
         phoneBook.add("Попов","7-999-666-99-99");
         phoneBook.add("Петров","7-999-555-99-99");
         phoneBook.add("Иванов","7-999-444-99-99");
-        phoneBook.get("Иванов");
-        phoneBook.get("Петров");
+
+        Set<String> allSurnames = phoneBook.getAllSurnames();
+        for (String surname : allSurnames) {
+            Set<String> phones = phoneBook.get(surname);
+            System.out.printf("%s: %s%n", surname, phones);
+        }
     }
 }

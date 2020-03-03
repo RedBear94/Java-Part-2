@@ -1,27 +1,36 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Phonebook {
-    List<Human> phoneBook = new ArrayList<>();
+    private Map<String, Set<String>> phoneBook = new TreeMap<>();
+    // List<Human> phoneBook = new ArrayList<>();
+    // Map<String, Set<String>> phoneBook = new HashMap<>();
 
-    public Phonebook(List<Human> phoneBook) {
+    public Phonebook(){}
+    public Phonebook(TreeMap<String, Set<String>> phoneBook) {
         this.phoneBook = phoneBook;
     }
 
-    public Phonebook(){
+    private Set<String> getPhones(String surname) {
+        // computeIfAbsent - добавит новый элемент в Map, но только в том случае, если элемент с таким ключом там отсутствует
+        // (key, mappingFunction - value(s) возращаемые функцией)
+        return phoneBook.computeIfAbsent(surname, key -> new HashSet<>());
+        // возвращает текущее (существующее или вычисленное) значение, связанное с указанным ключом
+        // в данном примере это HashSet<String>
     }
 
     void add(String surname, String phoneNumber){
-        this.phoneBook.add(new Human(surname, phoneNumber));
+        Set<String> phones = getPhones(surname); // phones - ссылается на ту же область памяти что значения phoneBook
+        phones.add(phoneNumber);    // Добавление значений в набор телефонов в phoneBook
     }
 
-    void get(String surname){
-        for(int i = 0; i < phoneBook.size(); i++){
-            if(surname == phoneBook.get(i).getSurname()){
-                System.out.println(phoneBook.get(i).getSurname() + " " + phoneBook.get(i).getPhoneNumber());
-            }
-        }
+    public Set<String> get(String surname){
+        return getPhones(surname);
+    }
+
+    public Set<String> getAllSurnames() {
+        // Возвращает представление карты в виде множества всех ключей: [Иванов, Кузнецов, Петров, Попов, Смирнов]
+        return phoneBook.keySet();
     }
 }
