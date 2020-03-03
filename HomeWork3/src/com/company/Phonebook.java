@@ -4,8 +4,6 @@ import java.util.*;
 
 public class Phonebook {
     private Map<String, Set<String>> phoneBook = new TreeMap<>();
-    // List<Human> phoneBook = new ArrayList<>();
-    // Map<String, Set<String>> phoneBook = new HashMap<>();
 
     public Phonebook(){}
     public Phonebook(TreeMap<String, Set<String>> phoneBook) {
