@@ -6,10 +6,12 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Chat {
     private final String[] users = { "Alex" ,"Ivan" ,"Olga"};
-    private static String activeUser;
+    private static String activeUser = "Pavel";
 
     private JPanel panel1;
     private JButton sendMessageButton;
@@ -39,6 +41,14 @@ public class Chat {
             @Override
             public void actionPerformed(ActionEvent e) {
                 sentMessagesArea.append(activeUser + ": " + messageField.getText() + "\n");
+                messageField.setText("");
+            }
+        });
+        messageField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sentMessagesArea.append(activeUser + ": " + messageField.getText() + "\n");
+                messageField.setText("");
             }
         });
     }
