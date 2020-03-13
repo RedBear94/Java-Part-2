@@ -43,8 +43,8 @@ public class Main {
 
         Main main = new Main();
 
-        Thread firstThread = new Thread(() -> main.method1(a1));
-        Thread secondThread = new Thread(() -> main.method2(a2));
+        Thread firstThread = new Thread(() -> main.method(a1, 0));
+        Thread secondThread = new Thread(() -> main.method(a2, HALF));
 
         firstThread.start();
         secondThread.start();
@@ -66,14 +66,9 @@ public class Main {
         System.out.println("2: " + (System.currentTimeMillis() - a) + " мс");
     }
 
-    public static void method1(float[] a1) {
+    public static void method(float[] a1, int offset) {
         for(int i = 0; i < HALF; i++) {
-            a1[i] = (float) (a1[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
-        }
-    }
-    public static void method2(float[] a2) {
-        for(int i = 0; i < HALF; i++) {
-            a2[i] = (float) (a2[i] * Math.sin(0.2f + (i + HALF) / 5) * Math.cos(0.2f + (i + HALF) / 5) * Math.cos(0.4f + (i + HALF) / 2));
+            a1[i] = (float) (a1[i] * Math.sin(0.2f + (i + offset) / 5) * Math.cos(0.2f + (i + offset) / 5) * Math.cos(0.4f + (i + offset) / 2));
         }
     }
 }
